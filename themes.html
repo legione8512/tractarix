@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ro-RO">
+  <head>
+    <title>Theme Settings | TractariX</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Pagina interna pentru schimbarea temei vizuale a site-ului TractariX."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Internal page: do not index this page -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="stylesheet" href="css/css-reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body data-theme="dark-yellow">
+    <div class="header-container">
+      <header>
+        <div class="logo-wrapper">
+          <a href="index.html">
+            <img
+              src="images/output-onlinepngtools.webp"
+              alt="TractariX Constanta logo"
+              class="logo"
+            />
+          </a>
+          <div class="top-left">ASISTENTA RUTIERA</div>
+        </div>
+
+        <nav>
+          <a href="index.html" class="mybutton">Înapoi la site</a>
+        </nav>
+      </header>
+    </div>
+
+    <main class="container">
+      <section class="col theme-page-card">
+        <h1 class="theme-page-title">Theme Settings</h1>
+
+        <p>
+          Această pagină este pentru testarea și schimbarea temei vizuale a
+          site-ului. Tema aleasă se salvează în browser și se aplică pe toate
+          paginile.
+        </p>
+
+        <label for="themeSelect">Alege tema:</label>
+
+        <select id="themeSelect" class="theme-select">
+          <option value="dark-yellow">Dark + Yellow</option>
+          <option value="navy-orange">Navy + Orange</option>
+          <option value="green-yellow">Green + Yellow</option>
+          <option value="light">Light Professional</option>
+          <option value="christmas">Christmas</option>
+        </select>
+
+        <p id="themeStatus" class="theme-status">
+          Current theme: Dark + Yellow
+        </p>
+
+        <a href="index.html" class="mybutton theme-back-button"
+          >Vezi homepage-ul</a
+        >
+      </section>
+
+      <section class="col theme-page-card">
+        <h2 class="cards">Preview</h2>
+
+        <p>
+          Aici poți vedea cum arată cardurile, textul și butoanele cu tema
+          selectată.
+        </p>
+
+        <a href="tel:0733188388" class="mybutton">Sună acum</a>
+        <a
+          href="https://api.whatsapp.com/send?phone=40733188388"
+          class="mybutton"
+          >WhatsApp</a
+        >
+      </section>
+    </main>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
