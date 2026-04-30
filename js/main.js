@@ -70,3 +70,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const menuButton = document.querySelector(".menu-toggle");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (menuButton && mobileMenu) {
+    menuButton.addEventListener("click", function () {
+      const isOpen = mobileMenu.classList.toggle("open");
+
+      menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      menuButton.textContent = isOpen ? "×" : "☰";
+    });
+  }
+});
