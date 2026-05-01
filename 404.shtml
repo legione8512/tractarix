@@ -1,229 +1,125 @@
 <!DOCTYPE html>
 <html lang="ro-RO">
   <head>
-    <title>Tractări Auto Constanța 24/7 | TractariX</title>
+    <title>Pagină negăsită | TractariX</title>
 
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="Tractări auto și asistență rutieră 24/7 în Constanța și împrejurimi. Contact rapid pentru tractări, service mobil, vulcanizare mobilă, baterie, combustibil și deblocare uși."
+      content="Pagina solicitată nu a fost găsită. TractariX oferă tractări auto și asistență rutieră 24/7 în Constanța."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="author" content="TractariX Constanța" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="noindex, follow" />
     <meta name="theme-color" content="#0f172a" />
-
-    <link rel="canonical" href="https://tractarix.ro/404.shtml" />
 
     <link rel="stylesheet" href="css/css-reset.css" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <link rel="icon" href="favicon/favicon.ico" />
+    <link rel="icon" href="favicon/favicon.ico?v=2" sizes="any" />
     <link
       rel="icon"
       type="image/png"
       sizes="192x192"
-      href="favicon/favicon-192x192.png"
+      href="favicon/favicon-192x192.png?v=2"
     />
-    <link rel="apple-touch-icon" href="favicon/apple-touch-icon-152x152.png" />
-    <link rel="manifest" href="manifest.json" />
+    <link
+      rel="apple-touch-icon"
+      href="favicon/apple-touch-icon-152x152.png?v=2"
+    />
   </head>
+
   <body>
-    <div class="icon-bar hide-desktop-only hide-all">
-      <a
-        href="tel:0733188388"
-        class="suna"
-        aria-label="Buton pentru apelarea numarului mobil pentru contact www.tractari-asistenta.tk"
-        ><img src="images/suna_ico.png" alt="Logo pentru butonul SUNA"
-      /></a>
-    </div>
+    <a
+      href="tel:0733188388"
+      class="floating-call-button"
+      aria-label="Sună acum TractariX"
+    >
+      <span class="floating-call-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" class="phone-svg">
+          <path
+            d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.69 6.45 9.06 7.57C9.17 7.92 9.09 8.31 8.81 8.59L6.62 10.79Z"
+          ></path>
+        </svg>
+      </span>
+      <span class="floating-call-text">Sună<br />acum</span>
+    </a>
+
     <div class="header-container">
-      <header>
-        <div class="logo-wrapper">
+      <header class="site-header">
+        <a href="index.html" class="brand" aria-label="TractariX homepage">
           <img
-            src="images/output-onlinepngtools.webp"
-            alt="Logo al firmei de Aistenta Rutiera din Constanta"
+            src="images/truck-logo.webp"
+            alt="TractariX Constanta logo"
             class="logo"
           />
-          <div class="top-left">ASISTENTA RUTIERA</div>
-        </div>
-        <nav>
-          <a href="index.html" class="mybutton active">Despre Noi</a>
+
+          <div class="brand-container">
+            <span class="brand-text">ASISTENȚĂ</span>
+            <span class="brand-text">RUTIERĂ</span>
+          </div>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Meniu principal">
+          <a href="index.html" class="mybutton">Despre Noi</a>
           <a href="servicii.html" class="mybutton">Servicii</a>
           <a href="tarife.html" class="mybutton">Tarife</a>
+          <a href="galerie.html" class="mybutton">Galerie</a>
           <a href="contact.html" class="mybutton">Contact</a>
         </nav>
-        <div class="mob-wrapper">
-          <img
-            src="images/icon-burger-menu.svg"
-            alt="Logo pentru butonul de meniu restrans"
-            class="burgermenu"
-          />
 
-          <div class="mob-nav">
-            <a href="index.html" class="navbutton">Despre Noi</a>
-            <a href="servicii.html" class="navbutton">Servicii</a>
-            <a href="tarife.html" class="navbutton">Tarife</a>
-            <a href="contact.html" class="navbutton active">Contact</a>
-          </div>
+        <div class="mobile-actions">
+          <a href="tel:0733188388" class="mobile-call-button">Sună</a>
+
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Deschide meniul"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            ☰
+          </button>
         </div>
       </header>
+
+      <nav class="mobile-nav" id="mobileMenu" aria-label="Meniu mobil">
+        <a href="index.html" class="navbutton">Despre Noi</a>
+        <a href="servicii.html" class="navbutton">Servicii</a>
+        <a href="tarife.html" class="navbutton">Tarife</a>
+        <a href="galerie.html" class="navbutton">Galerie</a>
+        <a href="contact.html" class="navbutton">Contact</a>
+      </nav>
     </div>
-    <div class="container">
-      <div class="col">
-        <div class="cont-text">
-          <h2 class="contac">CONTACT</h2>
-          <p>
-            Ne puteti contacta completand formularul de mai jos sau prin
-            urmatoarele metode:
-          </p>
-          <div class="row_cont">
-            <a href="https://api.whatsapp.com/send?phone=40733188388">
-              <div class="col_wrapper">
-                <img
-                  src="images/whatsapp_button_nobackground.png"
-                  alt="Buton pentru accesarea whatsapp a www.tractarix.ro din pagina 404"
-                />
-              </div>
-            </a>
-            <a
-              href="https://www.facebook.com/profile.php?id=100046135090113"
-              target="_blank"
-            >
-              <div class="col_wrapper">
-                <img
-                  src="images/facebook_button_nobackground.png"
-                  alt="Buton pentru accesarea paginii de Facebook a www.tractarix.ro din pagina 404"
-                />
-              </div>
-            </a>
-            <a href="#">
-              <div class="col_wrapper">
-                <img
-                  src="images/twitter_button_nobackground.png"
-                  alt="Buton pentru accesarea paginii de Twitter a www.tractarix.ro din pagina 404"
-                />
-              </div>
-            </a>
-            <a href="#">
-              <div class="col_wrapper">
-                <img
-                  src="images/instagram_button_nobackground.png"
-                  alt="Buton pentru accesarea paginii de Instagram a www.tractarix.ro din pagina 404"
-                />
-              </div>
-            </a>
-          </div>
-          <br />
-          <br />
-        </div>
-        <form action="mail.php" method="post">
-          <div class="inputw">
-            <label for="name">Nume si Prenume</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Nume si Prenume"
-            />
-          </div>
-          <br />
-          <div class="inputw">
-            <label for="email">E-mail</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="email@domeniultau.ro"
-            />
-          </div>
-          <br />
-          <div class="inputw">
-            <textarea
-              name="mesaj"
-              id="mesaj"
-              cols="56"
-              rows="10"
-              placeholder="Spune-ne cu ce te putem ajuta."
-            ></textarea>
-          </div>
-          <br />
-          <input type="submit" value="Send" class="mybutton" />
-        </form>
-      </div>
-      <div class="col">
-        <img
-          src="images/rsz_247.webp"
-          alt="Banner Tractari 24/7 si numar de telefon mobil"
-        />
-        <p>Tractari auto in Constanta, la cele mai bune preturi.</p>
-        <img src="images/sil2.svg" alt="Banner Asistenta Rutiera rotund" />
-        <p>
-          Tractari Constanta - Tractari Mangalia - Tractari Tulcea - TractariX
+
+    <main class="container error-main">
+      <section class="error-card">
+        <p class="hero-label">Eroare 404</p>
+
+        <h1 class="hero-title">Pagina nu a fost găsită</h1>
+
+        <p class="hero-description">
+          Linkul accesat nu mai există sau adresa a fost introdusă greșit. Poți
+          reveni la pagina principală sau ne poți contacta direct pentru
+          tractări auto și asistență rutieră.
         </p>
-      </div>
-    </div>
-    <footer class="site-footer">
-      <div class="footer-content">
-        <div class="footer-info">
-          <h2>TractariX Constanța</h2>
 
-          <p>
-            Tractări auto și asistență rutieră disponibile 24/7 în Constanța și
-            împrejurimi.
-          </p>
+        <div class="hero-actions">
+          <a href="index.html" class="cta-button cta-primary">
+            Înapoi la homepage
+          </a>
 
-          <div class="footer-contact-links">
-            <a href="tel:0733188388">📞 0733 188 388</a>
-            <a href="https://api.whatsapp.com/send?phone=40733188388"
-              >WhatsApp</a
-            >
-            <a
-              href="https://www.facebook.com/profile.php?id=100046135090113"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Facebook
-            </a>
-          </div>
+          <a href="tel:0733188388" class="cta-button cta-secondary">
+            Sună acum
+          </a>
+
+          <a href="tarife.html" class="cta-button cta-secondary">
+            Vezi tarifele
+          </a>
         </div>
+      </section>
+    </main>
 
-        <div class="footer-form-wrapper">
-          <h2>Trimite un mesaj</h2>
-
-          <form action="mail.php" method="post" class="footer-contact-form">
-            <div class="footer-form-row">
-              <input type="text" name="name" placeholder="Nume" required />
-              <input type="email" name="email" placeholder="E-mail" required />
-            </div>
-
-            <textarea
-              name="mesaj"
-              rows="4"
-              placeholder="Spune-ne cu ce te putem ajuta."
-              required
-            ></textarea>
-
-            <input
-              type="text"
-              name="website"
-              class="hidden-field"
-              tabindex="-1"
-              autocomplete="off"
-            />
-
-            <button type="submit" class="cta-button cta-primary">
-              Trimite
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2026 TractariX. All Rights Reserved.</p>
-      </div>
-    </footer>
     <script src="js/main.js"></script>
   </body>
 </html>

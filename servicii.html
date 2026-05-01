@@ -20,14 +20,17 @@
     <link rel="stylesheet" href="css/css-reset.css" />
     <link rel="stylesheet" href="css/style.css" />
 
-    <link rel="icon" href="favicon/favicon.ico" />
+    <link rel="icon" href="favicon/favicon.ico?v=2" sizes="any" />
     <link
       rel="icon"
       type="image/png"
       sizes="192x192"
-      href="favicon/favicon-192x192.png"
+      href="favicon/favicon-192x192.png?v=2"
     />
-    <link rel="apple-touch-icon" href="favicon/apple-touch-icon-152x152.png" />
+    <link
+      rel="apple-touch-icon"
+      href="favicon/apple-touch-icon-152x152.png?v=2"
+    />
     <link rel="manifest" href="manifest.json" />
   </head>
   <body>
@@ -49,17 +52,21 @@
       <header class="site-header">
         <a href="index.html" class="brand" aria-label="TractariX homepage">
           <img
-            src="images/output-onlinepngtools.webp"
+            src="images/truck-logo.webp"
             alt="TractariX Constanta logo"
             class="logo"
           />
-          <span class="brand-text">ASISTENȚĂ RUTIERĂ</span>
+          <div class="brand-container">
+            <span class="brand-text">ASISTENȚĂ</span>
+            <span class="brand-text">RUTIERĂ</span>
+          </div>
         </a>
 
         <nav class="desktop-nav" aria-label="Meniu principal">
           <a href="index.html" class="mybutton">Despre Noi</a>
           <a href="servicii.html" class="mybutton active">Servicii</a>
           <a href="tarife.html" class="mybutton">Tarife</a>
+          <a href="galerie.html" class="mybutton">Galerie</a>
           <a href="contact.html" class="mybutton">Contact</a>
         </nav>
 
@@ -82,6 +89,7 @@
         <a href="index.html" class="navbutton">Despre Noi</a>
         <a href="servicii.html" class="navbutton active">Servicii</a>
         <a href="tarife.html" class="navbutton">Tarife</a>
+        <a href="galerie.html" class="navbutton">Galerie</a>
         <a href="contact.html" class="navbutton">Contact</a>
       </nav>
     </div>
@@ -112,7 +120,20 @@
 
       <section class="services-grid-full">
         <article class="service-card">
-          <h2>Tractări auto 24/7</h2>
+          <div class="service-card-header">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 17H5"></path>
+                <path d="M19 17H21"></path>
+                <path d="M6 17H15"></path>
+                <path d="M6 17L8 10H14L17 14H20V17"></path>
+                <circle cx="6" cy="17" r="2"></circle>
+                <circle cx="17" cy="17" r="2"></circle>
+                <path d="M9 10V7H12"></path>
+              </svg>
+            </div>
+            <h2>Tractări auto 24/7</h2>
+          </div>
           <p>
             Oferim servicii de tractare pentru autoturisme în Constanța, în
             împrejurimi și la cerere pe distanțe mai mari.
@@ -120,7 +141,17 @@
         </article>
 
         <article class="service-card">
-          <h2>Service mobil</h2>
+          <div class="service-card-header">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M14.7 6.3A4 4 0 0 0 9 11L4 16V20H8L13 15A4 4 0 0 0 18.7 9.3"
+                ></path>
+                <path d="M16 4L20 8"></path>
+              </svg>
+            </div>
+            <h2>Service mobil</h2>
+          </div>
           <p>
             Dacă problema poate fi rezolvată la fața locului, venim direct la
             locația ta și încercăm să te repunem rapid în mișcare.
@@ -128,7 +159,17 @@
         </article>
 
         <article class="service-card">
-          <h2>Deblocare uși</h2>
+          <div class="service-card-header">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="4" y="10" width="14" height="10" rx="2"></rect>
+                <path d="M8 10V7A4 4 0 0 1 16 7"></path>
+                <path d="M14 15H21"></path>
+                <path d="M18 12L21 15L18 18"></path>
+              </svg>
+            </div>
+            <h2>Deblocare uși</h2>
+          </div>
           <p>
             Te putem ajuta dacă ai încuiat cheile în mașină sau ai probleme cu
             sistemul de închidere al autovehiculului.
@@ -136,7 +177,17 @@
         </article>
 
         <article class="service-card">
-          <h2>Alimentare combustibil</h2>
+          <div class="service-card-header">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 20V5A2 2 0 0 1 9 3H15A2 2 0 0 1 17 5V20"></path>
+                <path d="M7 9H17"></path>
+                <path d="M17 8H19L21 10V17A2 2 0 0 1 19 19H17"></path>
+                <path d="M10 13H14"></path>
+              </svg>
+            </div>
+            <h2>Alimentare combustibil</h2>
+          </div>
           <p>
             Intervenim dacă ai rămas fără combustibil sau dacă ai alimentat
             greșit și ai nevoie de ajutor.
@@ -144,7 +195,21 @@
         </article>
 
         <article class="service-card">
-          <h2>Vulcanizare mobilă</h2>
+          <div class="service-card-header">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="8"></circle>
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 4V7"></path>
+                <path d="M12 17V20"></path>
+                <path d="M4 12H7"></path>
+                <path d="M17 12H20"></path>
+                <path d="M6.4 6.4L8.5 8.5"></path>
+                <path d="M15.5 15.5L17.6 17.6"></path>
+              </svg>
+            </div>
+            <h2>Vulcanizare mobilă</h2>
+          </div>
           <p>
             Te ajutăm în caz de pană, anvelopă tăiată sau alte probleme legate
             de roți, în Constanța și în afara orașului.
@@ -152,7 +217,17 @@
         </article>
 
         <article class="service-card">
-          <h2>Încărcare baterie</h2>
+          <div class="service-card-header">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="7" width="16" height="10" rx="2"></rect>
+                <path d="M19 10H21V14H19"></path>
+                <path d="M8 12H11"></path>
+                <path d="M12 9L10 13H13L11 17"></path>
+              </svg>
+            </div>
+            <h2>Încărcare baterie</h2>
+          </div>
           <p>
             Dacă mașina nu pornește din cauza bateriei, ne poți contacta pentru
             asistență rapidă.
@@ -160,7 +235,20 @@
         </article>
 
         <article class="service-card">
-          <h2>Taxi pentru pasageri</h2>
+          <div class="service-card-header">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M5 16L7 9A3 3 0 0 1 10 7H14A3 3 0 0 1 17 9L19 16"
+                ></path>
+                <path d="M4 16H20V19H4Z"></path>
+                <circle cx="7" cy="19" r="2"></circle>
+                <circle cx="17" cy="19" r="2"></circle>
+                <path d="M9 11H15"></path>
+              </svg>
+            </div>
+            <h2>Taxi pentru pasageri</h2>
+          </div>
           <p>
             Dacă vehiculul nu mai poate continua drumul, putem ajuta cu
             transportul pasagerilor către o locație sigură.
@@ -168,7 +256,19 @@
         </article>
 
         <article class="service-card">
-          <h2>Transport utilaje</h2>
+          <div class="service-card-header">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 16H20"></path>
+                <path d="M6 16L8 10H15L18 16"></path>
+                <circle cx="8" cy="17" r="2"></circle>
+                <circle cx="18" cy="17" r="2"></circle>
+                <path d="M10 10V6H14"></path>
+                <path d="M14 6L16 8"></path>
+              </svg>
+            </div>
+            <h2>Transport utilaje</h2>
+          </div>
           <p>
             Putem oferi transport pentru utilaje agricole, forestiere sau de
             construcții, în funcție de greutate, distanță și disponibilitate.
@@ -176,7 +276,21 @@
         </article>
 
         <article class="service-card">
-          <h2>Închirieri auto</h2>
+          <div class="service-card-header">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M6 15L8 9A3 3 0 0 1 11 7H15A3 3 0 0 1 18 10L20 15"
+                ></path>
+                <path d="M5 15H21V18H5Z"></path>
+                <circle cx="8" cy="18" r="2"></circle>
+                <circle cx="18" cy="18" r="2"></circle>
+                <path d="M11 7L10 4"></path>
+                <path d="M16 7L17 4"></path>
+              </svg>
+            </div>
+            <h2>Închirieri auto</h2>
+          </div>
           <p>
             Pentru situații în care ai nevoie să îți continui drumul, ne poți
             contacta pentru variante disponibile.
@@ -184,7 +298,18 @@
         </article>
 
         <article class="service-card">
-          <h2>Acte auto</h2>
+          <div class="service-card-header">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 3H15L19 7V21H7Z"></path>
+                <path d="M15 3V8H19"></path>
+                <path d="M10 12H16"></path>
+                <path d="M10 16H16"></path>
+                <path d="M5 7V21"></path>
+              </svg>
+            </div>
+            <h2>Acte auto</h2>
+          </div>
           <p>
             Te putem ajuta cu informații sau servicii legate de rovinietă, RCA,
             ITP, taxă de pod sau alte documente auto.
@@ -199,17 +324,13 @@
           Sună-ne și explică situația. Îți spunem rapid ce variantă este
           potrivită și ce costuri aproximative pot apărea.
         </p>
-
         <div class="hero-actions">
           <a href="tel:0733188388" class="cta-button cta-primary">
             Sună acum
           </a>
 
-          <a
-            href="https://api.whatsapp.com/send?phone=40733188388"
-            class="cta-button cta-secondary"
-          >
-            WhatsApp
+          <a href="tarife.html" class="cta-button cta-secondary">
+            Vezi tarifele
           </a>
         </div>
       </section>
@@ -223,17 +344,47 @@
             Tractări auto și asistență rutieră disponibile 24/7 în Constanța și
             împrejurimi.
           </p>
-
           <div class="footer-contact-links">
-            <a href="tel:0733188388">📞 0733 188 388</a>
-            <a href="https://api.whatsapp.com/send?phone=40733188388"
-              >WhatsApp</a
-            >
+            <a href="tel:0733188388">
+              <svg
+                class="button-icon call-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6.62 10.79C8.06 13.62 10.38 15.93 13.21 17.38L15.41 15.18C15.68 14.91 16.08 14.82 16.43 14.94C17.55 15.31 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.69 6.45 9.06 7.57C9.17 7.92 9.09 8.31 8.81 8.59L6.62 10.79Z"
+                ></path>
+              </svg>
+              0733 188 388
+            </a>
+
+            <a href="https://api.whatsapp.com/send?phone=40733188388">
+              <svg
+                class="button-icon whatsapp-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12.04 3C7.08 3 3.05 6.9 3.05 11.7C3.05 13.24 3.47 14.74 4.26 16.06L3 21L8.13 19.75C9.39 20.43 10.8 20.79 12.04 20.79C16.99 20.79 21 16.89 21 11.9C21 7.05 16.99 3 12.04 3ZM12.04 19.2C10.8 19.2 9.58 18.87 8.51 18.25L8.22 18.08L5.21 18.81L5.95 15.96L5.76 15.66C5.03 14.52 4.65 13.2 4.65 11.7C4.65 7.78 7.94 4.6 12.04 4.6C16.14 4.6 19.4 7.9 19.4 11.9C19.4 15.92 16.14 19.2 12.04 19.2ZM16.21 13.79C15.98 13.67 14.86 13.13 14.65 13.05C14.44 12.97 14.29 12.93 14.14 13.17C13.99 13.4 13.55 13.91 13.42 14.06C13.29 14.21 13.16 14.23 12.93 14.12C12.7 14 11.96 13.77 11.09 13.02C10.41 12.43 9.95 11.7 9.82 11.47C9.69 11.24 9.81 11.11 9.92 11C10.02 10.9 10.15 10.74 10.26 10.61C10.37 10.48 10.41 10.38 10.49 10.23C10.57 10.08 10.53 9.95 10.47 9.83C10.41 9.71 9.96 8.62 9.77 8.16C9.59 7.72 9.4 7.78 9.26 7.77H8.82C8.67 7.77 8.43 7.83 8.22 8.06C8.01 8.29 7.43 8.85 7.43 9.99C7.43 11.13 8.25 12.23 8.36 12.38C8.47 12.53 9.98 14.83 12.27 15.82C12.82 16.06 13.25 16.2 13.59 16.31C14.14 16.48 14.64 16.46 15.04 16.4C15.48 16.34 16.39 15.85 16.58 15.31C16.77 14.77 16.77 14.31 16.71 14.21C16.65 14.11 16.44 13.99 16.21 13.79Z"
+                ></path>
+              </svg>
+              WhatsApp
+            </a>
+
             <a
               href="https://www.facebook.com/profile.php?id=100046135090113"
               target="_blank"
               rel="noopener noreferrer"
             >
+              <svg
+                class="button-icon facebook-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M14 8.5H16V5.2C15.65 5.15 14.45 5 13.1 5C10.3 5 8.4 6.7 8.4 9.85V12.5H5.25V16.2H8.4V23H12.25V16.2H15.25L15.85 12.5H12.25V10.2C12.25 9.15 12.55 8.5 14 8.5Z"
+                ></path>
+              </svg>
               Facebook
             </a>
           </div>

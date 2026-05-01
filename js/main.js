@@ -1,12 +1,15 @@
-// Make sure sw are supported
-// if ("serviceWorker" in navigator) {
-//   window.addEventListener("load", () => {
-//     navigator.serviceWorker
-//       .register("../sw_cached_site.js")
-//       .then((reg) => console.log("Service Worker: Registered (Pages)"))
-//       .catch((err) => console.log(`Service Worker: Error: ${err}`));
-//   });
-// }
+"use strict";
+
+/*
+  TractariX main JavaScript
+  - Applies the selected theme
+  - Handles the mobile menu
+  - Sends contact forms without page reload
+  - Shows popup messages after form submission
+*/
+
+const TRACTARIX_DEFAULT_THEME = "dark-yellow";
+const TRACTARIX_THEME_STORAGE_KEY = "tractarix-theme";
 
 const themes = [
   {
@@ -23,7 +26,7 @@ const themes = [
   },
   {
     id: "light",
-    label: "Light",
+    label: "Light Professional",
   },
   {
     id: "christmas",
@@ -31,118 +34,195 @@ const themes = [
   },
 ];
 
-function applyTheme(themeId) {
-  const themeExists = themes.some(function (theme) {
+document.addEventListener("DOMContentLoaded", function () {
+  initTheme();
+  initMobileMenu();
+  initContactForms();
+});
+
+function initTheme() {
+  const savedTheme = getSavedTheme();
+  applyTheme(savedTheme);
+  initThemeSelector(savedTheme);
+}
+
+function getSavedTheme() {
+  const savedTheme = localStorage.getItem(TRACTARIX_THEME_STORAGE_KEY);
+
+  if (themeExists(savedTheme)) {
+    return savedTheme;
+  }
+
+  return TRACTARIX_DEFAULT_THEME;
+}
+
+function themeExists(themeId) {
+  return themes.some(function (theme) {
     return theme.id === themeId;
   });
+}
 
-  const safeTheme = themeExists ? themeId : "dark-yellow";
+function getThemeById(themeId) {
+  return themes.find(function (theme) {
+    return theme.id === themeId;
+  });
+}
+
+function applyTheme(themeId) {
+  const safeTheme = themeExists(themeId) ? themeId : TRACTARIX_DEFAULT_THEME;
 
   document.body.setAttribute("data-theme", safeTheme);
-  localStorage.setItem("tractarix-theme", safeTheme);
+  localStorage.setItem(TRACTARIX_THEME_STORAGE_KEY, safeTheme);
+
+  updateThemeStatus(safeTheme);
 }
 
-function loadSavedTheme() {
-  const savedTheme = localStorage.getItem("tractarix-theme") || "dark-yellow";
-  applyTheme(savedTheme);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  loadSavedTheme();
-
+function initThemeSelector(currentTheme) {
   const themeSelect = document.getElementById("themeSelect");
+
+  if (!themeSelect) {
+    return;
+  }
+
+  themeSelect.value = currentTheme;
+
+  themeSelect.addEventListener("change", function () {
+    applyTheme(themeSelect.value);
+  });
+}
+
+function updateThemeStatus(themeId) {
   const themeStatus = document.getElementById("themeStatus");
 
-  if (themeSelect) {
-    const savedTheme = localStorage.getItem("tractarix-theme") || "dark-yellow";
-    themeSelect.value = savedTheme;
-
-    themeSelect.addEventListener("change", function () {
-      applyTheme(themeSelect.value);
-
-      const selectedTheme = themes.find(function (theme) {
-        return theme.id === themeSelect.value;
-      });
-
-      if (themeStatus && selectedTheme) {
-        themeStatus.textContent = "Current theme: " + selectedTheme.label;
-      }
-    });
+  if (!themeStatus) {
+    return;
   }
-});
-document.addEventListener("DOMContentLoaded", function () {
+
+  const selectedTheme = getThemeById(themeId);
+
+  if (selectedTheme) {
+    themeStatus.textContent = "Current theme: " + selectedTheme.label;
+  }
+}
+
+function initMobileMenu() {
   const menuButton = document.querySelector(".menu-toggle");
   const mobileMenu = document.getElementById("mobileMenu");
 
-  if (menuButton && mobileMenu) {
-    menuButton.addEventListener("click", function () {
-      const isOpen = mobileMenu.classList.toggle("open");
-
-      menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      menuButton.textContent = isOpen ? "×" : "☰";
-    });
+  if (!menuButton || !mobileMenu) {
+    return;
   }
-});
-document.addEventListener("DOMContentLoaded", function () {
+
+  menuButton.addEventListener("click", function () {
+    const isOpen = mobileMenu.classList.toggle("open");
+    updateMobileMenuButton(menuButton, isOpen);
+  });
+
+  const mobileLinks = mobileMenu.querySelectorAll("a");
+
+  mobileLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+      mobileMenu.classList.remove("open");
+      updateMobileMenuButton(menuButton, false);
+    });
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && mobileMenu.classList.contains("open")) {
+      mobileMenu.classList.remove("open");
+      updateMobileMenuButton(menuButton, false);
+    }
+  });
+}
+
+function updateMobileMenuButton(menuButton, isOpen) {
+  menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  menuButton.textContent = isOpen ? "×" : "☰";
+}
+
+function initContactForms() {
   const contactForms = document.querySelectorAll('form[action="mail.php"]');
 
   contactForms.forEach(function (form) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
-
-      const submitButton = form.querySelector(
-        'button[type="submit"], input[type="submit"]',
-      );
-      const originalButtonText = submitButton
-        ? submitButton.textContent || submitButton.value
-        : "";
-
-      if (submitButton) {
-        submitButton.disabled = true;
-
-        if (submitButton.tagName.toLowerCase() === "input") {
-          submitButton.value = "Se trimite...";
-        } else {
-          submitButton.textContent = "Se trimite...";
-        }
-      }
-
-      const formData = new FormData(form);
-
-      fetch(form.action, {
-        method: "POST",
-        body: formData,
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          showFormPopup(data.message, data.success ? "success" : "error");
-
-          if (data.success) {
-            form.reset();
-          }
-        })
-        .catch(function () {
-          showFormPopup(
-            "A apărut o eroare. Te rugăm să ne contactezi telefonic.",
-            "error",
-          );
-        })
-        .finally(function () {
-          if (submitButton) {
-            submitButton.disabled = false;
-
-            if (submitButton.tagName.toLowerCase() === "input") {
-              submitButton.value = originalButtonText;
-            } else {
-              submitButton.textContent = originalButtonText;
-            }
-          }
-        });
+      submitContactForm(form);
     });
   });
-});
+}
+
+function submitContactForm(form) {
+  const submitButton = form.querySelector(
+    'button[type="submit"], input[type="submit"]',
+  );
+
+  const originalButtonText = getButtonText(submitButton);
+
+  setButtonLoading(submitButton, true);
+
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: "POST",
+    body: formData,
+  })
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error("Server response was not successful.");
+      }
+
+      return response.json();
+    })
+    .then(function (data) {
+      const message =
+        data && data.message ? data.message : "Mesajul a fost procesat.";
+
+      const type = data && data.success ? "success" : "error";
+
+      showFormPopup(message, type);
+
+      if (data && data.success) {
+        form.reset();
+      }
+    })
+    .catch(function () {
+      showFormPopup(
+        "A apărut o eroare. Te rugăm să ne contactezi telefonic.",
+        "error",
+      );
+    })
+    .finally(function () {
+      setButtonLoading(submitButton, false, originalButtonText);
+    });
+}
+
+function getButtonText(button) {
+  if (!button) {
+    return "";
+  }
+
+  if (button.tagName.toLowerCase() === "input") {
+    return button.value;
+  }
+
+  return button.textContent;
+}
+
+function setButtonLoading(button, isLoading, originalText) {
+  if (!button) {
+    return;
+  }
+
+  button.disabled = isLoading;
+
+  const text = isLoading ? "Se trimite..." : originalText;
+
+  if (button.tagName.toLowerCase() === "input") {
+    button.value = text;
+  } else {
+    button.textContent = text;
+  }
+}
 
 function showFormPopup(message, type) {
   let popup = document.querySelector(".form-popup-message");
@@ -150,6 +230,8 @@ function showFormPopup(message, type) {
   if (!popup) {
     popup = document.createElement("div");
     popup.className = "form-popup-message";
+    popup.setAttribute("role", "status");
+    popup.setAttribute("aria-live", "polite");
     document.body.appendChild(popup);
   }
 
@@ -166,11 +248,11 @@ function showFormPopup(message, type) {
     popup.classList.add("form-popup-error");
   }
 
-  setTimeout(function () {
+  window.setTimeout(function () {
     popup.classList.add("form-popup-visible");
   }, 10);
 
-  setTimeout(function () {
+  window.setTimeout(function () {
     popup.classList.remove("form-popup-visible");
   }, 4500);
 }

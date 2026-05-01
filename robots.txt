@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: 
+Disallow: /themes.html
 Disallow: /cgi-bin/
-Sitemap: https://www.tractarix.ro/sitemap.xml
+Sitemap: https://tractarix.ro/sitemap.xml
