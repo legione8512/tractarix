@@ -1168,3 +1168,55 @@ input[type="submit"] {
     grid-template-columns: 1fr;
   }
 }
+.hidden-field {
+  display: none;
+}
+/* Popup message for contact forms */
+
+.form-popup-message {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  max-width: 340px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  font-weight: 800;
+  line-height: 1.4rem;
+  box-shadow: var(--shadow);
+  z-index: 3000;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: 0.25s ease;
+}
+
+.form-popup-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-popup-success {
+  background-color: rgba(34, 197, 94, 0.95);
+  color: #052e16;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.form-popup-error {
+  background-color: rgba(239, 68, 68, 0.95);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.hidden-field {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .form-popup-message {
+    right: 14px;
+    left: 14px;
+    bottom: 18px;
+    max-width: none;
+    text-align: center;
+  }
+}

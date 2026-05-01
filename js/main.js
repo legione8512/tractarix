@@ -83,3 +83,94 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+document.addEventListener("DOMContentLoaded", function () {
+  const contactForms = document.querySelectorAll('form[action="mail.php"]');
+
+  contactForms.forEach(function (form) {
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const submitButton = form.querySelector(
+        'button[type="submit"], input[type="submit"]',
+      );
+      const originalButtonText = submitButton
+        ? submitButton.textContent || submitButton.value
+        : "";
+
+      if (submitButton) {
+        submitButton.disabled = true;
+
+        if (submitButton.tagName.toLowerCase() === "input") {
+          submitButton.value = "Se trimite...";
+        } else {
+          submitButton.textContent = "Se trimite...";
+        }
+      }
+
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          showFormPopup(data.message, data.success ? "success" : "error");
+
+          if (data.success) {
+            form.reset();
+          }
+        })
+        .catch(function () {
+          showFormPopup(
+            "A apărut o eroare. Te rugăm să ne contactezi telefonic.",
+            "error",
+          );
+        })
+        .finally(function () {
+          if (submitButton) {
+            submitButton.disabled = false;
+
+            if (submitButton.tagName.toLowerCase() === "input") {
+              submitButton.value = originalButtonText;
+            } else {
+              submitButton.textContent = originalButtonText;
+            }
+          }
+        });
+    });
+  });
+});
+
+function showFormPopup(message, type) {
+  let popup = document.querySelector(".form-popup-message");
+
+  if (!popup) {
+    popup = document.createElement("div");
+    popup.className = "form-popup-message";
+    document.body.appendChild(popup);
+  }
+
+  popup.textContent = message;
+  popup.classList.remove(
+    "form-popup-success",
+    "form-popup-error",
+    "form-popup-visible",
+  );
+
+  if (type === "success") {
+    popup.classList.add("form-popup-success");
+  } else {
+    popup.classList.add("form-popup-error");
+  }
+
+  setTimeout(function () {
+    popup.classList.add("form-popup-visible");
+  }, 10);
+
+  setTimeout(function () {
+    popup.classList.remove("form-popup-visible");
+  }, 4500);
+}
