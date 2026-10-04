@@ -441,6 +441,7 @@ body[data-theme="light"] .final-cta {
 .brand .logo {
   width: 220px;
   max-width: 100%;
+  height: auto;
 }
 
 .brand-text {
