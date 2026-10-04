@@ -33,6 +33,8 @@
     <link rel="manifest" href="manifest.json" />
   </head>
   <body>
+    <a href="#continut" class="skip-link">Sari la conținut</a>
+
     <a
       href="tel:+40733188388"
       class="floating-call-button"
@@ -49,10 +51,10 @@
     </a>
     <div class="header-container">
       <header class="site-header">
-        <a href="index.html" class="brand" aria-label="TractariX homepage">
+        <a href="index.html" class="brand" aria-label="Asistență rutieră TractariX – pagina principală">
           <img
             src="images/truck-logo-440.webp"
-            alt="TractariX Constanta logo"
+            alt="TractariX Constanța"
             class="logo"
             width="220"
             height="94"
@@ -94,7 +96,7 @@
       </nav>
     </div>
 
-    <main class="container">
+    <main class="container" id="continut">
       <section class="page-hero">
         <p class="hero-label">Informare GDPR</p>
 
@@ -271,41 +273,55 @@
 
           <form action="mail.php" method="post" class="footer-contact-form">
             <div class="footer-form-row">
+              <div class="form-field">
+                <label for="form-name">Nume</label>
+                <input
+                  type="text"
+                  id="form-name"
+                  name="name"
+                  autocomplete="name"
+                  maxlength="100"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="form-phone">Telefon</label>
+                <input
+                  type="tel"
+                  id="form-phone"
+                  name="telefon"
+                  placeholder="ex. 07xx xxx xxx"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  maxlength="20"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-field footer-form-full">
+              <label for="form-email">E-mail (opțional)</label>
               <input
-                type="text"
-                name="name"
-                placeholder="Nume"
-                autocomplete="name"
-                maxlength="100"
-                required
-              />
-              <input
-                type="tel"
-                name="telefon"
-                placeholder="Telefon"
-                autocomplete="tel"
-                inputmode="tel"
-                maxlength="20"
-                required
+                type="email"
+                id="form-email"
+                name="email"
+                autocomplete="email"
+                maxlength="254"
               />
             </div>
 
-            <input
-              type="email"
-              name="email"
-              class="footer-form-full"
-              placeholder="E-mail (opțional)"
-              autocomplete="email"
-              maxlength="254"
-            />
-
-            <textarea
-              name="mesaj"
-              rows="4"
-              placeholder="Spune-ne cu ce te putem ajuta."
-              maxlength="2000"
-              required
-            ></textarea>
+            <div class="form-field">
+              <label for="form-message">Mesaj</label>
+              <textarea
+                id="form-message"
+                name="mesaj"
+                rows="4"
+                placeholder="Spune-ne cu ce te putem ajuta."
+                maxlength="2000"
+                required
+              ></textarea>
+            </div>
 
             <input
               type="text"

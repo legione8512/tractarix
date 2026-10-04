@@ -16,6 +16,27 @@
     <meta name="theme-color" content="#0f172a" />
 
     <link rel="canonical" href="https://tractarix.ro/tarife.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TractariX" />
+    <meta property="og:locale" content="ro_RO" />
+    <meta property="og:title" content="Tarife Tractări Auto Constanța | TractariX" />
+    <meta
+      property="og:description"
+      content="Tarife orientative pentru tractări auto, service mobil, vulcanizare mobilă, deblocare uși, alimentare combustibil și încărcare baterie în Constanța."
+    />
+    <meta property="og:url" content="https://tractarix.ro/tarife.html" />
+    <meta
+      property="og:image"
+      content="https://tractarix.ro/images/og-tractarix.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Platformă TractariX pentru tractări auto în Constanța"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="css/css-reset.css" />
     <link rel="stylesheet" href="css/style.css" />
 
@@ -33,6 +54,8 @@
     <link rel="manifest" href="manifest.json" />
   </head>
   <body>
+    <a href="#continut" class="skip-link">Sari la conținut</a>
+
     <a
       href="tel:+40733188388"
       class="floating-call-button"
@@ -49,10 +72,10 @@
     </a>
     <div class="header-container">
       <header class="site-header">
-        <a href="index.html" class="brand" aria-label="TractariX homepage">
+        <a href="index.html" class="brand" aria-label="Asistență rutieră TractariX – pagina principală">
           <img
             src="images/truck-logo-440.webp"
-            alt="TractariX Constanta logo"
+            alt="TractariX Constanța"
             class="logo"
             width="220"
             height="94"
@@ -94,7 +117,7 @@
         <a href="contact.html" class="navbutton">Contact</a>
       </nav>
     </div>
-    <main class="container">
+    <main class="container" id="continut">
       <section class="page-hero">
         <p class="hero-label">Tarife TractariX</p>
 
@@ -390,41 +413,55 @@
 
           <form action="mail.php" method="post" class="footer-contact-form">
             <div class="footer-form-row">
+              <div class="form-field">
+                <label for="form-name">Nume</label>
+                <input
+                  type="text"
+                  id="form-name"
+                  name="name"
+                  autocomplete="name"
+                  maxlength="100"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="form-phone">Telefon</label>
+                <input
+                  type="tel"
+                  id="form-phone"
+                  name="telefon"
+                  placeholder="ex. 07xx xxx xxx"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  maxlength="20"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-field footer-form-full">
+              <label for="form-email">E-mail (opțional)</label>
               <input
-                type="text"
-                name="name"
-                placeholder="Nume"
-                autocomplete="name"
-                maxlength="100"
-                required
-              />
-              <input
-                type="tel"
-                name="telefon"
-                placeholder="Telefon"
-                autocomplete="tel"
-                inputmode="tel"
-                maxlength="20"
-                required
+                type="email"
+                id="form-email"
+                name="email"
+                autocomplete="email"
+                maxlength="254"
               />
             </div>
 
-            <input
-              type="email"
-              name="email"
-              class="footer-form-full"
-              placeholder="E-mail (opțional)"
-              autocomplete="email"
-              maxlength="254"
-            />
-
-            <textarea
-              name="mesaj"
-              rows="4"
-              placeholder="Spune-ne cu ce te putem ajuta."
-              maxlength="2000"
-              required
-            ></textarea>
+            <div class="form-field">
+              <label for="form-message">Mesaj</label>
+              <textarea
+                id="form-message"
+                name="mesaj"
+                rows="4"
+                placeholder="Spune-ne cu ce te putem ajuta."
+                maxlength="2000"
+                required
+              ></textarea>
+            </div>
 
             <input
               type="text"

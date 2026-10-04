@@ -137,6 +137,10 @@ function initMobileMenu() {
 
 function updateMobileMenuButton(menuButton, isOpen) {
   menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+  menuButton.setAttribute(
+    "aria-label",
+    isOpen ? "Închide meniul" : "Deschide meniul",
+  );
   menuButton.textContent = isOpen ? "×" : "☰";
 }
 

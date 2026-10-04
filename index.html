@@ -16,6 +16,27 @@
 
     <link rel="canonical" href="https://tractarix.ro/" />
 
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TractariX" />
+    <meta property="og:locale" content="ro_RO" />
+    <meta property="og:title" content="Tractări Auto Constanța 24/7 | TractariX" />
+    <meta
+      property="og:description"
+      content="Tractări auto și asistență rutieră 24/7 în Constanța și împrejurimi. Contact rapid pentru tractări, service mobil, vulcanizare mobilă, baterie, combustibil și deblocare uși."
+    />
+    <meta property="og:url" content="https://tractarix.ro/" />
+    <meta
+      property="og:image"
+      content="https://tractarix.ro/images/og-tractarix.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Platformă TractariX pentru tractări auto în Constanța"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="stylesheet" href="css/css-reset.css" />
     <link rel="stylesheet" href="css/style.css" />
 
@@ -31,8 +52,56 @@
       href="favicon/apple-touch-icon-152x152.png?v=2"
     />
     <link rel="manifest" href="manifest.json" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AutomotiveBusiness",
+        "@id": "https://tractarix.ro/#business",
+        "name": "TractariX",
+        "legalName": "AUTOASIST TOTAL S.R.L.",
+        "description": "Tractări auto și asistență rutieră 24/7 în Constanța și împrejurimi: tractări, service mobil, vulcanizare mobilă, baterie, combustibil și deblocare uși.",
+        "url": "https://tractarix.ro/",
+        "logo": "https://tractarix.ro/images/truck-logo-440.webp",
+        "image": "https://tractarix.ro/images/og-tractarix.jpg",
+        "telephone": "+40733188388",
+        "email": "contact@tractarix.ro",
+        "taxID": "50475685",
+        "priceRange": "100–1000 RON",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Constanța",
+          "addressRegion": "Constanța",
+          "addressCountry": "RO"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Constanța" },
+          { "@type": "Place", "name": "Mamaia" },
+          { "@type": "City", "name": "Năvodari" },
+          { "@type": "City", "name": "Eforie" },
+          { "@type": "City", "name": "Mangalia" }
+        ],
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "00:00",
+          "closes": "23:59"
+        },
+        "sameAs": ["https://www.facebook.com/profile.php?id=100046135090113"]
+      }
+    </script>
   </head>
   <body>
+    <a href="#continut" class="skip-link">Sari la conținut</a>
+
     <a
       href="tel:+40733188388"
       class="floating-call-button"
@@ -49,10 +118,10 @@
     </a>
     <div class="header-container">
       <header class="site-header">
-        <a href="index.html" class="brand" aria-label="TractariX homepage">
+        <a href="index.html" class="brand" aria-label="Asistență rutieră TractariX – pagina principală">
           <img
             src="images/truck-logo-440.webp"
-            alt="TractariX Constanta logo"
+            alt="TractariX Constanța"
             class="logo"
             width="220"
             height="94"
@@ -95,7 +164,7 @@
       </nav>
     </div>
 
-    <main class="container">
+    <main class="container" id="continut">
       <section class="hero-card">
         <div class="hero-content">
           <p class="hero-label">Asistență rutieră disponibilă 24/7</p>
@@ -363,41 +432,55 @@
 
           <form action="mail.php" method="post" class="footer-contact-form">
             <div class="footer-form-row">
+              <div class="form-field">
+                <label for="form-name">Nume</label>
+                <input
+                  type="text"
+                  id="form-name"
+                  name="name"
+                  autocomplete="name"
+                  maxlength="100"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="form-phone">Telefon</label>
+                <input
+                  type="tel"
+                  id="form-phone"
+                  name="telefon"
+                  placeholder="ex. 07xx xxx xxx"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  maxlength="20"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-field footer-form-full">
+              <label for="form-email">E-mail (opțional)</label>
               <input
-                type="text"
-                name="name"
-                placeholder="Nume"
-                autocomplete="name"
-                maxlength="100"
-                required
-              />
-              <input
-                type="tel"
-                name="telefon"
-                placeholder="Telefon"
-                autocomplete="tel"
-                inputmode="tel"
-                maxlength="20"
-                required
+                type="email"
+                id="form-email"
+                name="email"
+                autocomplete="email"
+                maxlength="254"
               />
             </div>
 
-            <input
-              type="email"
-              name="email"
-              class="footer-form-full"
-              placeholder="E-mail (opțional)"
-              autocomplete="email"
-              maxlength="254"
-            />
-
-            <textarea
-              name="mesaj"
-              rows="4"
-              placeholder="Spune-ne cu ce te putem ajuta."
-              maxlength="2000"
-              required
-            ></textarea>
+            <div class="form-field">
+              <label for="form-message">Mesaj</label>
+              <textarea
+                id="form-message"
+                name="mesaj"
+                rows="4"
+                placeholder="Spune-ne cu ce te putem ajuta."
+                maxlength="2000"
+                required
+              ></textarea>
+            </div>
 
             <input
               type="text"
