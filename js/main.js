@@ -46,8 +46,27 @@ function initTheme() {
   initThemeSelector(savedTheme);
 }
 
+// localStorage can throw when the browser blocks site data (e.g. cookies
+// disabled). Theme saving is optional, so errors are ignored and the rest of
+// the script (mobile menu, contact forms) keeps working.
+function readStoredTheme() {
+  try {
+    return localStorage.getItem(TRACTARIX_THEME_STORAGE_KEY);
+  } catch (error) {
+    return null;
+  }
+}
+
+function storeTheme(themeId) {
+  try {
+    localStorage.setItem(TRACTARIX_THEME_STORAGE_KEY, themeId);
+  } catch (error) {
+    // Ignore: the theme is still applied for the current page.
+  }
+}
+
 function getSavedTheme() {
-  const savedTheme = localStorage.getItem(TRACTARIX_THEME_STORAGE_KEY);
+  const savedTheme = readStoredTheme();
 
   if (themeExists(savedTheme)) {
     return savedTheme;
@@ -72,7 +91,7 @@ function applyTheme(themeId) {
   const safeTheme = themeExists(themeId) ? themeId : TRACTARIX_DEFAULT_THEME;
 
   document.body.setAttribute("data-theme", safeTheme);
-  localStorage.setItem(TRACTARIX_THEME_STORAGE_KEY, safeTheme);
+  storeTheme(safeTheme);
 
   updateThemeStatus(safeTheme);
 }

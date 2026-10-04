@@ -1325,6 +1325,10 @@ body[data-theme="light"] .final-cta {
   margin-bottom: 22px;
 }
 
+.theme-preview-card .footer-contact-links {
+  margin-bottom: 28px;
+}
+
 .theme-preview-actions {
   display: flex;
   flex-wrap: wrap;
