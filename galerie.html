@@ -35,7 +35,7 @@
 
   <body>
     <a
-      href="tel:0733188388"
+      href="tel:+40733188388"
       class="floating-call-button"
       aria-label="Sună acum TractariX"
     >
@@ -72,7 +72,7 @@
         </nav>
 
         <div class="mobile-actions">
-          <a href="tel:0733188388" class="mobile-call-button">Sună</a>
+          <a href="tel:+40733188388" class="mobile-call-button">Sună</a>
 
           <button
             class="menu-toggle"
@@ -108,12 +108,12 @@
         </p>
 
         <div class="hero-actions">
-          <a href="tel:0733188388" class="cta-button cta-primary">
+          <a href="tel:+40733188388" class="cta-button cta-primary">
             Sună acum
           </a>
 
           <a
-            href="https://api.whatsapp.com/send?phone=40733188388"
+            href="https://wa.me/40733188388?text=Bun%C4%83%20ziua%21%20Am%20nevoie%20de%20asisten%C8%9B%C4%83%20rutier%C4%83.%20Loca%C8%9Bia%20mea%20este%3A%20"
             class="cta-button cta-secondary"
           >
             WhatsApp
@@ -177,7 +177,7 @@
         <p>Pentru urgențe, cel mai rapid este să ne contactezi telefonic.</p>
 
         <div class="hero-actions">
-          <a href="tel:0733188388" class="cta-button cta-primary">
+          <a href="tel:+40733188388" class="cta-button cta-primary">
             Sună acum
           </a>
 
@@ -199,7 +199,7 @@
           </p>
 
           <div class="footer-contact-links">
-            <a href="tel:0733188388">
+            <a href="tel:+40733188388">
               <svg
                 class="button-icon call-icon"
                 viewBox="0 0 24 24"
@@ -212,7 +212,7 @@
               0733 188 388
             </a>
 
-            <a href="https://api.whatsapp.com/send?phone=40733188388">
+            <a href="https://wa.me/40733188388?text=Bun%C4%83%20ziua%21%20Am%20nevoie%20de%20asisten%C8%9B%C4%83%20rutier%C4%83.%20Loca%C8%9Bia%20mea%20este%3A%20">
               <svg
                 class="button-icon whatsapp-icon"
                 viewBox="0 0 24 24"
@@ -249,14 +249,39 @@
 
           <form action="mail.php" method="post" class="footer-contact-form">
             <div class="footer-form-row">
-              <input type="text" name="name" placeholder="Nume" required />
-              <input type="email" name="email" placeholder="E-mail" required />
+              <input
+                type="text"
+                name="name"
+                placeholder="Nume"
+                autocomplete="name"
+                maxlength="100"
+                required
+              />
+              <input
+                type="tel"
+                name="telefon"
+                placeholder="Telefon"
+                autocomplete="tel"
+                inputmode="tel"
+                maxlength="20"
+                required
+              />
             </div>
+
+            <input
+              type="email"
+              name="email"
+              class="footer-form-full"
+              placeholder="E-mail (opțional)"
+              autocomplete="email"
+              maxlength="254"
+            />
 
             <textarea
               name="mesaj"
               rows="4"
               placeholder="Spune-ne cu ce te putem ajuta."
+              maxlength="2000"
               required
             ></textarea>
 
@@ -271,12 +296,54 @@
             <button type="submit" class="cta-button cta-primary">
               Trimite
             </button>
+
+            <p class="form-privacy-note">
+              Folosim datele trimise doar ca să îți răspundem. Detalii în
+              <a href="politica-confidentialitate.html"
+                >Politica de confidențialitate</a
+              >.
+            </p>
           </form>
         </div>
       </div>
 
+      <div class="footer-legal">
+        <div class="footer-legal-info">
+          <p>
+            TractariX este un serviciu operat de
+            <strong>AUTOASIST TOTAL S.R.L.</strong>
+          </p>
+          <p>
+            CUI 50475685 · Nr. Reg. Com. J2024018378009 · Sediu: Constanța
+          </p>
+          <p>
+            E-mail:
+            <a href="mailto:contact@tractarix.ro">contact@tractarix.ro</a>
+            ·
+            <a href="politica-confidentialitate.html"
+              >Politica de confidențialitate</a
+            >
+          </p>
+        </div>
+
+        <a
+          href="https://reclamatiisal.anpc.ro"
+          class="anpc-sal-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="images/anpc-sal.png"
+            alt="ANPC – Soluționarea alternativă a litigiilor (SAL)"
+            width="250"
+            height="50"
+            loading="lazy"
+          />
+        </a>
+      </div>
+
       <div class="footer-bottom">
-        <p>© 2026 TractariX. All Rights Reserved.</p>
+        <p>© 2026 TractariX. Toate drepturile rezervate.</p>
       </div>
     </footer>
 

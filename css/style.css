@@ -810,6 +810,10 @@ body[data-theme="light"] .final-cta {
   margin-bottom: 12px;
 }
 
+.footer-contact-form .footer-form-full {
+  margin-bottom: 12px;
+}
+
 .footer-contact-form input:focus,
 .footer-contact-form textarea:focus {
   outline: none;
@@ -825,6 +829,56 @@ body[data-theme="light"] .final-cta {
 .footer-contact-form button {
   cursor: pointer;
   border: none;
+}
+
+.form-privacy-note {
+  margin-top: 12px;
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  line-height: 1.3rem;
+}
+
+/* Legal information: company details and ANPC SAL pictogram */
+.footer-legal {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 18px 20px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.footer-legal-info p {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  line-height: 1.4rem;
+}
+
+.footer-legal-info strong,
+.legal-page strong {
+  font-weight: 800;
+  color: var(--text);
+}
+
+.footer-legal-info a,
+.form-privacy-note a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.anpc-sal-link {
+  display: inline-block;
+  line-height: 0;
+}
+
+.anpc-sal-link img {
+  width: 250px;
+  max-width: 100%;
+  height: auto;
 }
 
 .footer-bottom {
@@ -867,6 +921,11 @@ body[data-theme="light"] .final-cta {
 }
 
 @media (max-width: 768px) {
+  .footer-legal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .footer-content {
     grid-template-columns: 1fr;
     padding: 34px 20px 24px 20px;
@@ -1060,6 +1119,34 @@ body[data-theme="light"] .final-cta {
   color: var(--text-soft);
   line-height: 1.6rem;
   padding-left: 18px;
+}
+
+/* Privacy policy page */
+.legal-page {
+  width: 100%;
+  display: grid;
+  gap: 22px;
+  margin-bottom: 40px;
+}
+
+.legal-page p {
+  color: var(--text-soft);
+  line-height: 1.6rem;
+  margin-bottom: 12px;
+}
+
+.legal-page p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-page .contact-checklist {
+  list-style: disc;
+  margin-bottom: 12px;
+}
+
+.legal-page a {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 .contact-checklist li {
