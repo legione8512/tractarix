@@ -65,7 +65,7 @@
         </a>
 
         <nav class="desktop-nav" aria-label="Meniu principal">
-          <a href="/" class="mybutton">Despre Noi</a>
+          <a href="/" class="mybutton">Acasă</a>
           <a href="/servicii.html" class="mybutton">Servicii</a>
           <a href="/tarife.html" class="mybutton">Tarife</a>
           <a href="/galerie.html" class="mybutton">Galerie</a>
@@ -88,7 +88,7 @@
       </header>
 
       <nav class="mobile-nav" id="mobileMenu" aria-label="Meniu mobil">
-        <a href="/" class="navbutton">Despre Noi</a>
+        <a href="/" class="navbutton">Acasă</a>
         <a href="/servicii.html" class="navbutton">Servicii</a>
         <a href="/tarife.html" class="navbutton">Tarife</a>
         <a href="/galerie.html" class="navbutton">Galerie</a>
