@@ -1,0 +1,10 @@
+---
+# Publicare din cPanel → Git Version Control → „Deploy HEAD Commit”.
+# Copiază fișierele site-ului în folderul domeniului tractarix.ro.
+# Fișierele vechi de pe server care nu mai există în repo NU sunt șterse.
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/r139825hgwo/tractarix.ro/
+    - /bin/cp -f *.html *.shtml *.php *.xml *.txt *.json .htaccess $DEPLOYPATH
+    - /bin/cp -Rf css js images favicon $DEPLOYPATH
+    - /bin/rm -f ${DEPLOYPATH}themes.html

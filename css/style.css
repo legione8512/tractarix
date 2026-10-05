@@ -981,6 +981,38 @@ body[data-theme="light"] .final-cta {
   line-height: 1.3rem;
 }
 
+/* Served areas in footer */
+.footer-zones {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 20px 24px 20px;
+  box-sizing: border-box;
+}
+
+.footer-zones h2 {
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.footer-zones ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.footer-zones a {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+.footer-zones a:hover,
+.footer-zones a[aria-current="page"] {
+  color: var(--accent);
+}
+
 /* Legal information: company details and ANPC SAL pictogram */
 .footer-legal {
   max-width: 1024px;
