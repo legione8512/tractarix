@@ -269,6 +269,12 @@ function showFormPopup(message, type) {
   }
 
   popup.textContent = message;
+
+  // If the cookie banner is still open, show the message above it.
+  const banner = document.querySelector(".consent-banner");
+  popup.style.bottom =
+    banner && !banner.hidden ? banner.offsetHeight + 26 + "px" : "";
+
   popup.classList.remove(
     "form-popup-success",
     "form-popup-error",
