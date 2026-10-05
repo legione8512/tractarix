@@ -362,6 +362,14 @@ body[data-theme="light"] .final-cta {
   padding: 0;
 }
 
+.service-link {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--accent);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .service-card p {
   color: var(--text-soft);
   font-size: 0.95rem;
