@@ -6,10 +6,18 @@
   - Handles the mobile menu
   - Sends contact forms without page reload
   - Shows popup messages after form submission
+  - Asks for cookie consent and loads Google Analytics only after "Accept"
+  - Tracks clicks on phone and WhatsApp links and sent contact forms
 */
 
 const TRACTARIX_DEFAULT_THEME = "dark-yellow";
 const TRACTARIX_THEME_STORAGE_KEY = "tractarix-theme";
+
+const TRACTARIX_GA_ID = "G-V25RDETC08";
+const TRACTARIX_CONSENT_STORAGE_KEY = "tractarix-consent";
+// Analytics data is sent only from the real site, not from previews
+// (GitHub Pages, local files), so test visits don't end up in reports.
+const TRACTARIX_ANALYTICS_HOSTS = ["tractarix.ro", "www.tractarix.ro"];
 
 const themes = [
   {
@@ -38,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initTheme();
   initMobileMenu();
   initContactForms();
+  initAnalytics();
 });
 
 function initTheme() {
@@ -47,26 +56,26 @@ function initTheme() {
 }
 
 // localStorage can throw when the browser blocks site data (e.g. cookies
-// disabled). Theme saving is optional, so errors are ignored and the rest of
-// the script (mobile menu, contact forms) keeps working.
-function readStoredTheme() {
+// disabled). Saved settings are optional, so errors are ignored and the rest
+// of the script (mobile menu, contact forms) keeps working.
+function readStorage(key) {
   try {
-    return localStorage.getItem(TRACTARIX_THEME_STORAGE_KEY);
+    return localStorage.getItem(key);
   } catch (error) {
     return null;
   }
 }
 
-function storeTheme(themeId) {
+function writeStorage(key, value) {
   try {
-    localStorage.setItem(TRACTARIX_THEME_STORAGE_KEY, themeId);
+    localStorage.setItem(key, value);
   } catch (error) {
-    // Ignore: the theme is still applied for the current page.
+    // Ignore: the setting still applies to the current page.
   }
 }
 
 function getSavedTheme() {
-  const savedTheme = readStoredTheme();
+  const savedTheme = readStorage(TRACTARIX_THEME_STORAGE_KEY);
 
   if (themeExists(savedTheme)) {
     return savedTheme;
@@ -91,7 +100,7 @@ function applyTheme(themeId) {
   const safeTheme = themeExists(themeId) ? themeId : TRACTARIX_DEFAULT_THEME;
 
   document.body.setAttribute("data-theme", safeTheme);
-  storeTheme(safeTheme);
+  writeStorage(TRACTARIX_THEME_STORAGE_KEY, safeTheme);
 
   updateThemeStatus(safeTheme);
 }
@@ -206,6 +215,7 @@ function submitContactForm(form) {
 
       if (data && data.success) {
         form.reset();
+        trackEvent("generate_lead", { metoda: "formular" });
       }
     })
     .catch(function () {
@@ -278,4 +288,195 @@ function showFormPopup(message, type) {
   window.setTimeout(function () {
     popup.classList.remove("form-popup-visible");
   }, 4500);
+}
+
+/* Google Analytics with cookie consent */
+
+let analyticsLoaded = false;
+
+function initAnalytics() {
+  const consent = readStorage(TRACTARIX_CONSENT_STORAGE_KEY);
+
+  if (consent === "granted") {
+    loadGoogleAnalytics();
+  } else if (consent !== "denied") {
+    showConsentBanner();
+  }
+
+  addCookieSettingsLink();
+  initConversionTracking();
+}
+
+function isProductionSite() {
+  return TRACTARIX_ANALYTICS_HOSTS.includes(window.location.hostname);
+}
+
+function loadGoogleAnalytics() {
+  if (analyticsLoaded) {
+    return;
+  }
+
+  analyticsLoaded = true;
+
+  if (!isProductionSite()) {
+    return;
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () {
+    window.dataLayer.push(arguments);
+  };
+
+  window.gtag("consent", "default", {
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+  window.gtag("js", new Date());
+  window.gtag("config", TRACTARIX_GA_ID, {
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+  });
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src =
+    "https://www.googletagmanager.com/gtag/js?id=" + TRACTARIX_GA_ID;
+  document.head.appendChild(script);
+}
+
+function trackEvent(name, params) {
+  if (!analyticsLoaded) {
+    return;
+  }
+
+  if (isProductionSite() && window.gtag) {
+    window.gtag("event", name, params);
+  } else {
+    // Preview: show the event in the browser console instead of sending it.
+    console.info("[Google Analytics – previzualizare]", name, params);
+  }
+}
+
+function initConversionTracking() {
+  document.addEventListener("click", function (event) {
+    const link = event.target.closest("a[href]");
+
+    if (!link) {
+      return;
+    }
+
+    const href = link.getAttribute("href");
+
+    if (href.startsWith("tel:")) {
+      trackEvent("click_telefon", { locatie_buton: getButtonLocation(link) });
+    } else if (href.includes("wa.me/")) {
+      trackEvent("click_whatsapp", { locatie_buton: getButtonLocation(link) });
+    }
+  });
+}
+
+function getButtonLocation(element) {
+  if (element.closest(".floating-call-button")) {
+    return "buton_plutitor";
+  }
+
+  if (element.closest(".site-header, .mobile-nav")) {
+    return "meniu";
+  }
+
+  if (element.closest(".site-footer")) {
+    return "footer";
+  }
+
+  return "continut";
+}
+
+function showConsentBanner() {
+  let banner = document.querySelector(".consent-banner");
+
+  if (!banner) {
+    banner = document.createElement("div");
+    banner.className = "consent-banner";
+    banner.setAttribute("role", "region");
+    banner.setAttribute("aria-label", "Consimțământ cookie-uri");
+    banner.innerHTML =
+      "<p>Folosim cookie-uri Google Analytics ca să vedem câți oameni " +
+      "vizitează site-ul și ce pagini le sunt utile. Le activăm doar dacă " +
+      'ești de acord. <a href="politica-confidentialitate.html">Detalii</a></p>' +
+      '<div class="consent-actions">' +
+      '<button type="button" class="cta-button cta-primary" data-consent="granted">Accept</button>' +
+      '<button type="button" class="cta-button cta-secondary" data-consent="denied">Refuz</button>' +
+      "</div>";
+
+    banner.addEventListener("click", function (event) {
+      const button = event.target.closest("button[data-consent]");
+
+      if (button) {
+        saveConsent(button.getAttribute("data-consent"));
+      }
+    });
+
+    document.body.appendChild(banner);
+  }
+
+  banner.hidden = false;
+}
+
+function saveConsent(choice) {
+  writeStorage(TRACTARIX_CONSENT_STORAGE_KEY, choice);
+  document.querySelector(".consent-banner").hidden = true;
+
+  if (choice === "granted") {
+    loadGoogleAnalytics();
+    return;
+  }
+
+  if (analyticsLoaded) {
+    // Consent withdrawn: remove the Analytics cookies and reload without GA.
+    deleteAnalyticsCookies();
+    window.location.reload();
+  }
+}
+
+function deleteAnalyticsCookies() {
+  const host = window.location.hostname;
+  const domains = [
+    "",
+    "; domain=" + host,
+    "; domain=." + host.replace(/^www\./, ""),
+  ];
+
+  document.cookie.split(";").forEach(function (cookie) {
+    const name = cookie.split("=")[0].trim();
+
+    if (name.startsWith("_ga")) {
+      domains.forEach(function (domain) {
+        document.cookie =
+          name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + domain;
+      });
+    }
+  });
+}
+
+function addCookieSettingsLink() {
+  const policyLink = document.querySelector(
+    '.footer-legal-info a[href="politica-confidentialitate.html"]',
+  );
+
+  if (!policyLink) {
+    return;
+  }
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "link-button";
+  button.textContent = "Setări cookie-uri";
+  button.addEventListener("click", function () {
+    showConsentBanner();
+    document.querySelector('.consent-banner button[data-consent="granted"]').focus();
+  });
+
+  policyLink.after(" · ", button);
 }
