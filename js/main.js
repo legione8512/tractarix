@@ -6,7 +6,8 @@
   - Handles the mobile menu
   - Sends contact forms without page reload
   - Shows popup messages after form submission
-  - Asks for cookie consent and loads Google Analytics only after "Accept"
+  - Asks for cookie consent and loads Google Analytics (with Google Ads
+    conversion measurement) only after "Accept"
   - Tracks clicks on phone and WhatsApp links and sent contact forms
 */
 
@@ -14,7 +15,9 @@ const TRACTARIX_DEFAULT_THEME = "dark-yellow";
 const TRACTARIX_THEME_STORAGE_KEY = "tractarix-theme";
 
 const TRACTARIX_GA_ID = "G-V25RDETC08";
-const TRACTARIX_CONSENT_STORAGE_KEY = "tractarix-consent";
+// "-v2": the banner now also covers Google Ads measurement, so visitors who
+// answered the old Analytics-only banner are asked again.
+const TRACTARIX_CONSENT_STORAGE_KEY = "tractarix-consent-v2";
 // Analytics data is sent only from the real site, not from previews
 // (GitHub Pages, local files), so test visits don't end up in reports.
 const TRACTARIX_ANALYTICS_HOSTS = ["tractarix.ro", "www.tractarix.ro"];
@@ -335,8 +338,9 @@ function loadGoogleAnalytics() {
 
   window.gtag("consent", "default", {
     analytics_storage: "granted",
-    ad_storage: "denied",
-    ad_user_data: "denied",
+    // Google Ads: conversion measurement only, no remarketing.
+    ad_storage: "granted",
+    ad_user_data: "granted",
     ad_personalization: "denied",
   });
   window.gtag("js", new Date());
@@ -408,9 +412,9 @@ function showConsentBanner() {
     banner.setAttribute("role", "region");
     banner.setAttribute("aria-label", "Consimțământ cookie-uri");
     banner.innerHTML =
-      "<p>Folosim cookie-uri Google Analytics ca să vedem câți oameni " +
-      "vizitează site-ul și ce pagini le sunt utile. Le activăm doar dacă " +
-      'ești de acord. <a href="politica-confidentialitate.html">Detalii</a></p>' +
+      "<p>Folosim cookie-uri Google Analytics și Google Ads ca să vedem cum e " +
+      "folosit site-ul și câți vizitatori vin din reclame. Le activăm doar " +
+      'dacă ești de acord. <a href="politica-confidentialitate.html">Detalii</a></p>' +
       '<div class="consent-actions">' +
       '<button type="button" class="cta-button cta-primary" data-consent="granted">Accept</button>' +
       '<button type="button" class="cta-button cta-secondary" data-consent="denied">Refuz</button>' +
@@ -439,9 +443,20 @@ function saveConsent(choice) {
     return;
   }
 
+  // Refused or withdrawn: remove the Google cookies (also those left by
+  // an earlier "Accept") and reload without GA if it was already running.
+  // GA is told first, so it doesn't write its cookies back while unloading.
+  if (analyticsLoaded && window.gtag) {
+    window.gtag("consent", "update", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+    });
+  }
+
+  deleteAnalyticsCookies();
+
   if (analyticsLoaded) {
-    // Consent withdrawn: remove the Analytics cookies and reload without GA.
-    deleteAnalyticsCookies();
     window.location.reload();
   }
 }
@@ -457,7 +472,7 @@ function deleteAnalyticsCookies() {
   document.cookie.split(";").forEach(function (cookie) {
     const name = cookie.split("=")[0].trim();
 
-    if (name.startsWith("_ga")) {
+    if (name.startsWith("_ga") || name.startsWith("_gcl")) {
       domains.forEach(function (domain) {
         document.cookie =
           name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + domain;
